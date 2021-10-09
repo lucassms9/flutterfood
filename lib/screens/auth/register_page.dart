@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutterfood/screens/auth/login_page.dart';
 import 'package:flutterfood/screens/auth/widgets/heading.dart';
-import './register_page.dart';
 
-class LoginScreen extends StatelessWidget {
+class RegisterScreen extends StatelessWidget {
   double _deviceWidth = 0;
   double _deviceHeight = 0;
 
@@ -49,15 +49,38 @@ Widget _formLogin(context) {
               offset: Offset(0, 10))
         ]),
     child: Column(
-      children: <Widget>[_emailTextField(context), _passwordTextField(context)],
+      children: <Widget>[
+        _nameTextField(context),
+        _emailTextField(context),
+        _passwordTextField(context)
+      ],
     ),
+  );
+}
+
+Widget _nameTextField(context) {
+  return TextFormField(
+    autocorrect: false,
+    autofocus: true,
+    style: TextStyle(color: Theme.of(context).primaryColor),
+    cursorColor: Theme.of(context).primaryColor,
+    decoration: InputDecoration(
+        border: UnderlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).primaryColor)),
+        enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).primaryColor)),
+        focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).primaryColor)),
+        contentPadding: EdgeInsets.all(10),
+        hintText: 'Nome',
+        hintStyle: TextStyle(color: Theme.of(context).primaryColor)),
   );
 }
 
 Widget _emailTextField(context) {
   return TextFormField(
     autocorrect: false,
-    autofocus: true,
+    autofocus: false,
     style: TextStyle(color: Theme.of(context).primaryColor),
     cursorColor: Theme.of(context).primaryColor,
     decoration: InputDecoration(
@@ -86,7 +109,7 @@ Widget _passwordTextField(context) {
         enabledBorder: InputBorder.none,
         focusedBorder: InputBorder.none,
         contentPadding: EdgeInsets.all(10),
-        hintText: 'Password',
+        hintText: 'Senha',
         hintStyle: TextStyle(color: Theme.of(context).primaryColor)),
   );
 }
@@ -100,7 +123,7 @@ Widget _loginButton(context, _deviceWidth) {
         Navigator.pushReplacementNamed(context, '/restaurants');
       },
       color: Theme.of(context).primaryColor,
-      child: Text('LOGIN'),
+      child: Text('Cadastrar'),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
     ),
   );
@@ -109,11 +132,8 @@ Widget _loginButton(context, _deviceWidth) {
 Widget _textRegister(context) {
   return GestureDetector(
       onTap: () {
-        // Navigator.of(context)
-        //     .push(MaterialPageRoute(builder: (context) => RegisterScreen()));
-
-        Navigator.pushNamed(context, '/register');
+        Navigator.of(context).pop();
       },
-      child: Text('Cadastrar-se',
+      child: Text('Já tem cadastro? faça login.',
           style: TextStyle(color: Theme.of(context).primaryColor)));
 }
